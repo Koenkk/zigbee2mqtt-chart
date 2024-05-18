@@ -1,0 +1,42 @@
+name: OnUnpollerRelease
+on:
+  workflow_dispatch:
+    inputs:
+      zigbee2mqtt_version:
+        description: 'Version of zigbee2mqtt released'
+        required: true
+        type: string
+
+jobs:
+  release:
+    # depending on default permission settings for your org (contents being read-only or read-write for workloads), you will have to add permissions
+    # see: https://docs.github.com/en/actions/security-guides/automatic-token-authentication#modifying-the-permissions-for-the-github_token
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+      - name: yq - portable yaml processor
+        uses: mikefarah/yq@v4.43.1
+
+      - name: Update helm values
+        run: |
+          ZIGBEE2MQTT_VERSION=${{ github.event.inputs.zigbee2mqtt_version }}
+          yq -i ".appVersion=\"${ZIGBEE2MQTT_VERSION}\"" charts/unpoller/Chart.yaml
+          yq -i ".version=\"${ZIGBEE2MQTT_VERSION}\"" charts/unpoller/Chart.yaml
+          go run github.com/norwoodj/helm-docs/cmd/helm-docs@latest
+          
+          cp charts/zigbee2mqtt/README.md README.MD
+          git add charts
+          git add README.MD         
+          git commit -m "chore(unpoller): Updated chart and app version to ${UNPOLLER_VERSION}}"
+          git push
