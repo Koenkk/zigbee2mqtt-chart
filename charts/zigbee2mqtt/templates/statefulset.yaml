@@ -64,6 +64,11 @@ spec:
             - mountPath: /app/data/configuration.yaml
               name: config-volume
               subPath: configuration.yaml
+            {{- if .Values.statefulset.secrets.name }}
+            - mountPath: /app/data/secret.yaml
+              name: secrets-volume
+              subPath: secret.yaml
+            {{- end }}
             - mountPath: /app/data/
               name: data-volume
           resources: {{- toYaml .Values.statefulset.resources | nindent 12 }}
@@ -71,6 +76,11 @@ spec:
         - name: config-volume
           configMap:
             name: {{ include "zigbee2mqtt.fullname" . }}
+        {{- if .Values.statefulset.secrets.name }}
+        - name: secrets-volume
+          secret:
+            secretName: {{ .Values.statefulset.secrets.name }}
+        {{- end }}
         {{- if not .Values.statefulset.storage.enabled }}
         - name: data-volume
           emptyDir: { }
