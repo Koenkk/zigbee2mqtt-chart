@@ -37,6 +37,13 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
 {{- end }}
+      initContainers:
+        - name: copy
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          command: ["bash", "-c", "cp /config-map/configuration.yaml /app/data/"]
+          volumeMounts:
+            - mountPath: /config-map
+              name: config-map
       containers:
         - name: zigbee2mqtt
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -61,14 +68,11 @@ spec:
             timeoutSeconds: 10
             periodSeconds: 30
           volumeMounts:
-            - mountPath: /app/data/configuration.yaml
-              name: config-volume
-              subPath: configuration.yaml
             - mountPath: /app/data/
               name: data-volume
           resources: {{- toYaml .Values.statefulset.resources | nindent 12 }}
       volumes:
-        - name: config-volume
+        - name: config-map
           configMap:
             name: {{ include "zigbee2mqtt.fullname" . }}
         {{- if not .Values.statefulset.storage.enabled }}
