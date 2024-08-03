@@ -40,10 +40,12 @@ spec:
       initContainers:
         - name: copy
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
-          command: ["bash", "-c", "cp /config-map/configuration.yaml /app/data/"]
+          command: ["sh", "-c", "cp /config-map/configuration.yaml /app/data/"]
           volumeMounts:
             - mountPath: /config-map
               name: config-map
+            - mountPath: /app/data/
+              name: data-volume
       containers:
         - name: zigbee2mqtt
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
