@@ -10,7 +10,7 @@ Bridges events and allows you to control your Zigbee devices via MQTT
 
 | Name | Email | Url |
 | ---- | ------ | --- |
-| Koen Kanters | <XXXX> |  |
+| Koen Kanters |  |  |
 
 ## Source Code
 
@@ -30,15 +30,13 @@ Kubernetes: `>=1.26.0-0`
 | image.pullPolicy | string | `"IfNotPresent"` | Container pull policy |
 | image.repository | string | `"koenkk/zigbee2mqtt"` | Image repository for the `zigbee2mqtt` container. |
 | image.tag | string | `"1.37.1"` | Version for the `zigbee2mqtt` container. |
-| ingress.annotations | object | `{}` |  |
+| ingress | object | `{"annotations":{},"enabled":false,"hosts":[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"},{"path":"/api","pathType":"ImplementationSpecific"}]}],"ingressClassName":"contour","labels":{},"pathType":"Prefix","tls":[{"hosts":["yourdomain.com"],"secretName":"some-tls-secret"}]}` | Ingress configuration. Zigbee2mqtt does use webssockets, which is not part of the Ingress standart settings. most of the popular ingresses supports them through annotations. Please check https://www.zigbee2mqtt.io/guide/installation/08_kubernetes.html for examples. |
 | ingress.enabled | bool | `false` | When enabled a new Ingress will be created |
-| ingress.hosts[0] | string | `"yourdomain.com"` |  |
-| ingress.ingressClassName | string | `"contour"` |  |
-| ingress.labels | object | `{}` |  |
-| ingress.path | string | `"/"` |  |
-| ingress.pathType | string | `"Prefix"` |  |
-| ingress.tls[0].hosts[0] | string | `"yourdomain.com"` |  |
-| ingress.tls[0].secretName | string | `"some-tls-secret"` |  |
+| ingress.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"},{"path":"/api","pathType":"ImplementationSpecific"}]}]` | list of hosts that should be allowed for the zigbee2mqtt service |
+| ingress.ingressClassName | string | `"contour"` | The ingress class name for the ingress |
+| ingress.labels | object | `{}` | Additional labels for the ingres |
+| ingress.pathType | string | `"Prefix"` | Ingress implementation specific (potentially) for most use cases Prefix should be ok |
+| ingress.tls | list | `[{"hosts":["yourdomain.com"],"secretName":"some-tls-secret"}]` | configuration for tls service (ig any) |
 | nameOverride | string | `nil` | override the release name |
 | service.annotations | object | `{}` | annotations for the service created |
 | service.port | int | `8080` | port in which the service will be listening |
