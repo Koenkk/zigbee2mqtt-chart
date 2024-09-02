@@ -1,4 +1,4 @@
-name: OnUnpollerRelease
+name: OnZigbee2MQTTRelease
 on:
   repository_dispatch:
     types: release

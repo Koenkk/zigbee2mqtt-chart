@@ -1,12 +1,12 @@
-name: Release Charts
+name: Release Helm chart
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
     paths:
       - 'charts/**'
-  workflow_dispatch:
 
 jobs:
   release:
