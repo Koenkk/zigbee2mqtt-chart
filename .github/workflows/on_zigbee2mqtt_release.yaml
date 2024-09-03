@@ -30,7 +30,7 @@ jobs:
 
       - name: Update helm values
         run: |
-          ZIGBEE2MQTT_VERSION=${{ ithub.event.inputs.zigbee2mqtt_version }}
+          ZIGBEE2MQTT_VERSION=${{ github.event.inputs.zigbee2mqtt_version }}
           yq -i ".appVersion=\"${ZIGBEE2MQTT_VERSION}\"" charts/zigbee2mqtt/Chart.yaml
           yq -i ".version=\"${ZIGBEE2MQTT_VERSION}\"" charts/zigbee2mqtt/Chart.yaml
           go run github.com/norwoodj/helm-docs/cmd/helm-docs@latest
