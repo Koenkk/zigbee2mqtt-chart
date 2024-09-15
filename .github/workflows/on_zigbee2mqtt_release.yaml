@@ -1,6 +1,6 @@
 name: OnZigbee2MQTTRelease
 on:
-  repository_dispatch:
+  workflow_dispatch:
     inputs:
       zigbee2mqtt_version:
         description: 'Version of zigbee2mqtt released'
