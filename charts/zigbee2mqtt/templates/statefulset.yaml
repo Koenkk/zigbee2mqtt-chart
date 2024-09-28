@@ -66,6 +66,11 @@ spec:
               subPath: configuration.yaml
             - mountPath: /app/data/
               name: data-volume
+          {{- range .Values.statefulset.extraVolumes }}
+          {{-   if .volumeMounts }}
+          {{-     toYaml .volumeMounts | nindent 12 }}
+          {{-   end }}
+          {{- end }}
           resources: {{- toYaml .Values.statefulset.resources | nindent 12 }}
       volumes:
         - name: config-volume
@@ -74,6 +79,9 @@ spec:
         {{- if not .Values.statefulset.storage.enabled }}
         - name: data-volume
           emptyDir: { }
+        {{- end }}
+        {{- range .Values.statefulset.extraVolumes }}
+        {{- toYaml .volumes | nindent 8 }}
         {{- end }}
   {{- if .Values.statefulset.storage.enabled }}
   volumeClaimTemplates:
