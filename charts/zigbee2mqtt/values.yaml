@@ -20,6 +20,21 @@ service:
   # -- port in which the service will be listening
   port: 8080
 statefulset:
+  # extraVolumes:
+  #   - volumeMounts:
+  #       - name: nfs
+  #         mountPath: /mnt/volume
+  #         readOnly: true
+  #     volumes:
+  #       - name: nfs
+  #         server: some.nfs.server.com
+  #         path: /
+  #         mountOptions:
+  #           - port=2049
+  #           - hard
+  #           - vers=4
+  extraVolumes: []
+
   storage:
     enabled: false
     size: 1Gi
