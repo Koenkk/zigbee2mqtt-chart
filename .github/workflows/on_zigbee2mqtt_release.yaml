@@ -35,8 +35,6 @@ jobs:
           yq -i ".version=\"${ZIGBEE2MQTT_VERSION}\"" charts/zigbee2mqtt/Chart.yaml
           go run github.com/norwoodj/helm-docs/cmd/helm-docs@latest
           
-          cp charts/zigbee2mqtt/README.md README.MD
           git add charts
-          git add README.MD         
           git commit -m "chore: Updated chart and app version to ${ZIGBEE2MQTT_VERSION}"
           git push
