@@ -39,7 +39,7 @@ spec:
 {{- end }}
       containers:
         - name: zigbee2mqtt
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ coalesce .Values.image.tag .Chart.AppVersion }}"
           securityContext:
             privileged: true
             capabilities:
