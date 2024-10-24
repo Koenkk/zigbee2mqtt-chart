@@ -43,7 +43,9 @@ Kubernetes: `>=1.26.0-0`
 | service.type | string | `"LoadBalancer"` | type of Service to be created |
 | statefulset.dnsPolicy | string | `"ClusterFirst"` | pod dns policy |
 | statefulset.nodeSelector | object | `{}` | Select specific kube node, this will allow enforcing zigbee2mqtt running only on the node with the USB adapter connected |
+| statefulset.podSecurityContext | object | `{"seccompProfile":{"type":"RuntimeDefault"}}` | Configure Pods Security Context |
 | statefulset.resources | object | `{"limits":{"cpu":"200m","memory":"600Mi"},"requests":{"cpu":"200m","memory":"600Mi"}}` | CPU/Memory configuration for the pods |
+| statefulset.securityContext | object | `{"capabilities":{"add":["SYS_ADMIN"]},"privileged":true}` | Configure Container Security Context |
 | statefulset.storage.enabled | bool | `false` |  |
 | statefulset.storage.existingVolume | string | `""` |  |
 | statefulset.storage.matchExpressions | object | `{}` |  |
