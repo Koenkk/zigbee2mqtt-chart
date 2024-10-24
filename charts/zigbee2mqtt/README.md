@@ -42,6 +42,7 @@ Kubernetes: `>=1.26.0-0`
 | service.port | int | `8080` | port in which the service will be listening |
 | service.type | string | `"LoadBalancer"` | type of Service to be created |
 | statefulset.dnsPolicy | string | `"ClusterFirst"` | pod dns policy |
+| statefulset.extraVolumes| list of objects | `[]` | define extra volumes and volume mounts for the pod |
 | statefulset.nodeSelector | object | `{}` | Select specific kube node, this will allow enforcing zigbee2mqtt running only on the node with the USB adapter connected |
 | statefulset.resources | object | `{"limits":{"cpu":"200m","memory":"600Mi"},"requests":{"cpu":"200m","memory":"600Mi"}}` | CPU/Memory configuration for the pods |
 | statefulset.secrets.name | string | `""` | the name for the kubernets secret to mount as secret.yaml. This can be referenced in the config by using advanced configurations https://www.zigbee2mqtt.io/guide/configuration/frontend.html#advanced-configuration |
