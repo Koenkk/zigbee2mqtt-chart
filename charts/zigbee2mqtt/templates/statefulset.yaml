@@ -13,6 +13,8 @@ spec:
       app: {{ include "zigbee2mqtt.fullname" . }}
   template:
     metadata:
+      annotations:
+        checksum/configuration: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
       labels:
         {{- include "zigbee2mqtt.labels" . | nindent 8 }}
         app: {{ include "zigbee2mqtt.fullname" . }}
