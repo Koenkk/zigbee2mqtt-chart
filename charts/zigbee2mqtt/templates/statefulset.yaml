@@ -32,9 +32,10 @@ spec:
 {{- with .Values.statefulset.nodeSelector }}
 {{ toYaml . | indent 8 }}
 {{- end }}
+      {{- with .Values.statefulset.podSecurityContext }}
       securityContext:
-        seccompProfile:
-          type: RuntimeDefault
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
 {{- with .Values.statefulset.tolerations }}
       tolerations:
 {{ toYaml . | indent 8 }}
@@ -42,10 +43,10 @@ spec:
       containers:
         - name: zigbee2mqtt
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          {{- with .Values.statefulset.securityContext }}
           securityContext:
-            privileged: true
-            capabilities:
-              add: ["SYS_ADMIN"]
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: TZ

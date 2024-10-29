@@ -49,6 +49,15 @@ statefulset:
   # -- Select specific kube node, this will allow enforcing zigbee2mqtt running
   # only on the node with the USB adapter connected
   nodeSelector: {}
+  # -- Configure Pods Security Context
+  podSecurityContext:
+    seccompProfile:
+      type: RuntimeDefault
+  # -- Configure Container Security Context
+  securityContext:
+    privileged: true
+    capabilities:
+      add: ["SYS_ADMIN"]
 zigbee2mqtt:
   homeassistant:
     enabled: true
