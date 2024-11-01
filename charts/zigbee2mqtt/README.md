@@ -41,7 +41,9 @@ Kubernetes: `>=1.26.0-0`
 | service.annotations | object | `{}` | annotations for the service created |
 | service.port | int | `8080` | port in which the service will be listening |
 | service.type | string | `"LoadBalancer"` | type of Service to be created |
+| statefulset.command | object | `{}` | Overrides the entrypoint of the container |
 | statefulset.dnsPolicy | string | `"ClusterFirst"` | pod dns policy |
+| statefulset.livenessProbe | object | `{"failureThreshold":5,"httpGet":{"path":"/","port":"web"},"initialDelaySeconds":60,"periodSeconds":30,"timeoutSeconds":10}` | Configures Container liveness probe |
 | statefulset.nodeSelector | object | `{}` | Select specific kube node, this will allow enforcing zigbee2mqtt running only on the node with the USB adapter connected |
 | statefulset.podSecurityContext | object | `{"seccompProfile":{"type":"RuntimeDefault"}}` | Configure Pods Security Context |
 | statefulset.resources | object | `{"limits":{"cpu":"200m","memory":"600Mi"},"requests":{"cpu":"200m","memory":"600Mi"}}` | CPU/Memory configuration for the pods |

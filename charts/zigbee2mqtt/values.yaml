@@ -44,6 +44,8 @@ statefulset:
     limits:
       memory: 600Mi
       cpu: 200m
+  # -- Overrides the entrypoint of the container
+  command: {}
   # -- Node taint tolerations for the pods
   tolerations: {}
   # -- Select specific kube node, this will allow enforcing zigbee2mqtt running
@@ -58,6 +60,15 @@ statefulset:
     privileged: true
     capabilities:
       add: ["SYS_ADMIN"]
+  # -- Configures Container liveness probe
+  livenessProbe:
+    failureThreshold: 5
+    httpGet:
+      path: /
+      port: web
+    initialDelaySeconds: 60
+    timeoutSeconds: 10
+    periodSeconds: 30
 zigbee2mqtt:
   homeassistant:
     enabled: true
@@ -204,7 +215,7 @@ ingress:
   # -- Ingress implementation specific (potentially) for most use cases Prefix should be ok
   pathType: Prefix
   # Additional annotations for the ingress. ExternalDNS, and CertManager are tipically integrated here
-  annotations: { }
+  annotations: {}
   # -- list of hosts that should be allowed for the zigbee2mqtt service
   hosts:
     - host: chart-example.local
