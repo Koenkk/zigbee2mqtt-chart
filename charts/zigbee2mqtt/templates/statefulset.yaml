@@ -47,6 +47,10 @@ spec:
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
+          {{- with .Values.statefulset.command }}
+          command:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             - name: TZ
@@ -55,14 +59,10 @@ spec:
             - containerPort: {{ .Values.zigbee2mqtt.frontend.port }}
               name: web
               protocol: TCP
+          {{- with .Values.statefulset.livenessProbe }}
           livenessProbe:
-            failureThreshold: 5
-            httpGet:
-              path: /
-              port: web
-            initialDelaySeconds: 60
-            timeoutSeconds: 10
-            periodSeconds: 30
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           volumeMounts:
             - mountPath: /app/data/configuration.yaml
               name: config-volume
