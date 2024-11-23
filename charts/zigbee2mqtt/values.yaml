@@ -69,6 +69,15 @@ statefulset:
     initialDelaySeconds: 60
     timeoutSeconds: 10
     periodSeconds: 30
+  # -- Additional volumeMounts to the server main container
+  volumeMounts: []
+  #  - mountPath: /usr/local/bin/my-binary
+  #    name: custom-tools
+  #    subPath: my-binary
+  # -- Additional volumes to the server pod
+  volumes: []
+  #  - name: custom-tools
+  #    emptyDir: {}
 zigbee2mqtt:
   homeassistant:
     enabled: true

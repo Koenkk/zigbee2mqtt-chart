@@ -64,6 +64,9 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           volumeMounts:
+          {{- with .Values.statefulset.volumeMounts }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
             - mountPath: /app/data/configuration.yaml
               name: config-volume
               subPath: configuration.yaml
@@ -76,6 +79,9 @@ spec:
               name: data-volume
           resources: {{- toYaml .Values.statefulset.resources | nindent 12 }}
       volumes:
+      {{- with .Values.statefulset.volumes }}
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
         - name: config-volume
           configMap:
             name: {{ include "zigbee2mqtt.fullname" . }}
