@@ -1,6 +1,6 @@
 # zigbee2mqtt
 
-![Version: 1.41.0](https://img.shields.io/badge/Version-1.41.0-informational?style=flat-square) ![AppVersion: 1.41.0](https://img.shields.io/badge/AppVersion-1.41.0-informational?style=flat-square)
+![Version: 1.42.0](https://img.shields.io/badge/Version-1.42.0-informational?style=flat-square) ![AppVersion: 1.42.0](https://img.shields.io/badge/AppVersion-1.42.0-informational?style=flat-square)
 
 Bridges events and allows you to control your Zigbee devices via MQTT
 
@@ -56,6 +56,8 @@ Kubernetes: `>=1.26.0-0`
 | statefulset.storage.size | string | `"1Gi"` |  |
 | statefulset.storage.storageClassName | string | `"freenas-nfs-csi"` | the name for the storage class to be used in the persistent volume claim |
 | statefulset.tolerations | object | `{}` | Node taint tolerations for the pods |
+| statefulset.volumeMounts | list | `[]` | Additional volumeMounts to the server main container |
+| statefulset.volumes | list | `[]` | Additional volumes to the server pod |
 | zigbee2mqtt.advanced.adapter_concurrent | string | `nil` | Optional: configure adapter concurrency (e.g. 2 for CC2531 or 16 for CC26X2R1) (default: null, uses recommended value) |
 | zigbee2mqtt.advanced.adapter_delay | int | `0` | Optional: Set the adapter delay, only used for Conbee/Raspbee adapters (default 0). In case you are having issues try `200`. For more information see https://github.com/Koenkk/zigbee2mqtt/issues/4884 |
 | zigbee2mqtt.advanced.cache_state | bool | `true` | Has to be true when integrating via Home Assistant (default: true) |
