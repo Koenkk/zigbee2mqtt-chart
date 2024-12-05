@@ -19,6 +19,8 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          # Don't use standard token, otherwise `git push` doesn't trigger `helm_release.yaml`
+          token: ${{ secrets.GH_TOKEN }}
 
       - name: Configure Git
         run: |
