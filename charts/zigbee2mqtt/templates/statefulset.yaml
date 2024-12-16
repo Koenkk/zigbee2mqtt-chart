@@ -40,6 +40,21 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
 {{- end }}
+
+      {{- if .Values.statefulset.secrets.name }}
+      initContainers:
+        - name: init
+          image: busybox:1.28
+          command:
+            - sh
+            - -c
+            - rm -rf /app/data/secret.yaml ; ln -s /secret.yaml /app/data/secret.yaml
+          volumeMounts:
+            - name: data-volume
+              mountPath: /app/data
+            - name: secrets-volume
+              mountPath: /secret.yaml
+      {{- end }}
       containers:
         - name: zigbee2mqtt
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -71,7 +86,7 @@ spec:
               name: config-volume
               subPath: configuration.yaml
             {{- if .Values.statefulset.secrets.name }}
-            - mountPath: /app/data/secret.yaml
+            - mountPath: /secret.yaml
               name: secrets-volume
               subPath: secret.yaml
             {{- end }}
