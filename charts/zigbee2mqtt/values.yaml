@@ -87,6 +87,9 @@ zigbee2mqtt:
     legacy_triggers: false
   # -- Optional: allow new devices to join.
   permit_join: false
+  blocklist: []
+    # Locking devices from the network ( ieeeAddr )
+    # - '0x00158d0006c5e5d0'
   availability:
     active:
       # -- Time after which an active device will be marked as offline in
