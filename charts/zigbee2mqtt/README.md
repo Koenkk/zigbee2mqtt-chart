@@ -74,6 +74,7 @@ Kubernetes: `>=1.26.0-0`
 | zigbee2mqtt.advanced.transmit_power | int | `5` | Optional: Transmit power setting in dBm (default: 5). This will set the transmit power for devices that bring an inbuilt amplifier. It can't go over the maximum of the respective hardware and might be limited by firmware (for example to migrate heat, or by using an unsupported firmware). For the CC2652R(B) this is 5 dBm, CC2652P/CC1352P-2 20 dBm. |
 | zigbee2mqtt.availability.active.timeout | int | `10` | Time after which an active device will be marked as offline in minutes (default = 10 minutes) |
 | zigbee2mqtt.availability.passive.timeout | int | `1500` | Time after which a passive device will be marked as offline in minutes (default = 1500 minutes aka 25 hours) |
+| zigbee2mqtt.blocklist | list | `[]` | Locking devices from the network ( ieeeAddr ) |
 | zigbee2mqtt.external_converters | list | `[]` |  |
 | zigbee2mqtt.frontend.auth_token | string | `nil` | Optional, enables authentication, disabled by default, cleartext (no hashing required) |
 | zigbee2mqtt.frontend.host | string | `"0.0.0.0"` | Optional, empty by default to listen on both IPv4 and IPv6. Opens a unix socket when given a path instead of an address (e.g. '/run/zigbee2mqtt/zigbee2mqtt.sock') Don't set this if you use Docker or the Home Assistant add-on unless you're sure the chosen IP is available inside the container |
