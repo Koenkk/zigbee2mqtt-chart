@@ -6,8 +6,8 @@ customLabels: {}
 image:
   # -- Image repository for the `zigbee2mqtt` container.
   repository: koenkk/zigbee2mqtt
-  # -- Version for the `zigbee2mqtt` container.
-  tag: "1.37.1"
+  # -- Version for the `zigbee2mqtt` container. When unset, the appversion from the chart will be used.
+  tag: ""
   # -- Container pull policy
   pullPolicy: IfNotPresent
   # -- Container additional secrets to pull image
