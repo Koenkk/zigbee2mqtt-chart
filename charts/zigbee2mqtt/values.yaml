@@ -20,6 +20,12 @@ service:
   # -- port in which the service will be listening
   port: 8080
 statefulset:
+  # -- if enabled, the config file made available to the application is writeable
+  writeableConfig: false
+  configMigration:
+    image:
+      repository: mikefarah/yq
+      tag: 4.45.1
   storage:
     enabled: false
     size: 1Gi

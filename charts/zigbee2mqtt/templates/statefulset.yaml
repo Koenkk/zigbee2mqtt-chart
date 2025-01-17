@@ -40,6 +40,32 @@ spec:
       tolerations:
 {{ toYaml . | indent 8 }}
 {{- end }}
+      {{- if .Values.statefulset.writeableConfig }}
+      initContainers:
+        - name: yq
+          image: "{{ .Values.statefulset.configMigration.image.repository }}:{{ .Values.statefulset.configMigration.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: [ "/bin/sh" ]
+          securityContext:
+            runAsUser: {{ coalesce .Values.statefulset.securityContext.runAsUser "0" }}
+            runAsGroup: {{ coalesce .Values.statefulset.securityContext.runAsGroup "0" }}
+          args:
+            - -xc
+            - |
+              if [ ! -f /app/data/configuration.yaml ]; then
+                echo "Copying config, since destination does not exist.."
+                cp -v /config/configuration.yaml /app/data/configuration.yaml
+              else
+                echo "Found existing config. Merging values.."
+                yq eval-all --inplace '. as $item ireduce ({}; . * $item )' /app/data/configuration.yaml /config/configuration.yaml
+              fi
+          volumeMounts:
+            - mountPath: /app/data/
+              name: data-volume
+            - mountPath: /config/configuration.yaml
+              name: config-volume
+              subPath: configuration.yaml
+      {{- end }}
       containers:
         - name: zigbee2mqtt
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -67,9 +93,11 @@ spec:
           {{- with .Values.statefulset.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
+            {{- if not .Values.statefulset.writeableConfig }}
             - mountPath: /app/data/configuration.yaml
               name: config-volume
               subPath: configuration.yaml
+            {{- end }}
             {{- if .Values.statefulset.secrets.name }}
             - mountPath: /app/data/secret.yaml
               name: secrets-volume
