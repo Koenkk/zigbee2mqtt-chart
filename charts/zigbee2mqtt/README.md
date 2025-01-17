@@ -29,7 +29,7 @@ Kubernetes: `>=1.26.0-0`
 | image.imagePullSecrets | object | `{}` | Container additional secrets to pull image |
 | image.pullPolicy | string | `"IfNotPresent"` | Container pull policy |
 | image.repository | string | `"koenkk/zigbee2mqtt"` | Image repository for the `zigbee2mqtt` container. |
-| image.tag | string | `"1.37.1"` | Version for the `zigbee2mqtt` container. |
+| image.tag | string | `""` | Version for the `zigbee2mqtt` container. |
 | ingress | object | `{"annotations":{},"enabled":false,"hosts":[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"},{"path":"/api","pathType":"ImplementationSpecific"}]}],"ingressClassName":"contour","labels":{},"pathType":"Prefix","tls":[{"hosts":["yourdomain.com"],"secretName":"some-tls-secret"}]}` | Ingress configuration. Zigbee2mqtt does use webssockets, which is not part of the Ingress standart settings. most of the popular ingresses supports them through annotations. Please check https://www.zigbee2mqtt.io/guide/installation/08_kubernetes.html for examples. |
 | ingress.enabled | bool | `false` | When enabled a new Ingress will be created |
 | ingress.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"},{"path":"/api","pathType":"ImplementationSpecific"}]}]` | list of hosts that should be allowed for the zigbee2mqtt service |
