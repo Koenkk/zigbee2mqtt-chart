@@ -94,9 +94,13 @@ spec:
           args:
             - -c
             - |
-              if [ -f /app/data/configuration.yaml ]; then
+              if [ -f /app/data/configuration.yaml ]
+              then
                 echo "Backing up existing configuration file to /app/data/configuration-helm-backup.yaml"
                 cp /app/data/configuration.yaml /app/data/configuration-helm-backup.yaml
+              else
+                echo "configuration.yaml does not exists, creating one from config map /app/data/configmap-configuration.yaml"
+                cp /app/data/configmap-configuration.yaml /app/data/configuration.yaml
               fi
 
               yq --inplace '. *= load("/app/data/configmap-configuration.yaml") | del(.version) ' /app/data/configuration.yaml
