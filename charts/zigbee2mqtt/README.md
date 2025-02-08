@@ -38,6 +38,12 @@ Kubernetes: `>=1.26.0-0`
 | ingress.pathType | string | `"Prefix"` | Ingress implementation specific (potentially) for most use cases Prefix should be ok |
 | ingress.tls | list | `[{"hosts":["yourdomain.com"],"secretName":"some-tls-secret"}]` | configuration for tls service (ig any) |
 | nameOverride | string | `nil` | override the release name |
+| secretesMigratorContainer | object | `{"imagePullSecrets":{},"pullPolicy":"IfNotPresent","repository":"mikefarah/yq","securityContext":{"privileged":true,"runAsUser":0},"tag":"4.45.1"}` | details about the image |
+| secretesMigratorContainer.imagePullSecrets | object | `{}` | Container additional secrets to pull image |
+| secretesMigratorContainer.pullPolicy | string | `"IfNotPresent"` | Container pull policy |
+| secretesMigratorContainer.repository | string | `"mikefarah/yq"` | Image repository for the `zigbee2mqtt` container. |
+| secretesMigratorContainer.securityContext | object | `{"privileged":true,"runAsUser":0}` | permissions to create files since z2m runs with root (by default) |
+| secretesMigratorContainer.tag | string | `"4.45.1"` | Version for the `zigbee2mqtt` container. |
 | service.annotations | object | `{}` | annotations for the service created |
 | service.port | int | `8080` | port in which the service will be listening |
 | service.type | string | `"LoadBalancer"` | type of Service to be created |
@@ -77,6 +83,7 @@ Kubernetes: `>=1.26.0-0`
 | zigbee2mqtt.blocklist | list | `[]` | Locking devices from the network ( ieeeAddr ) |
 | zigbee2mqtt.external_converters | list | `[]` |  |
 | zigbee2mqtt.frontend.auth_token | string | `nil` | Optional, enables authentication, disabled by default, cleartext (no hashing required) |
+| zigbee2mqtt.frontend.enabled | bool | `true` | If the front end should be enabled, true by default. Pod health checks are based on this, so disabling it will cause an error loop unless health checks are updated. |
 | zigbee2mqtt.frontend.host | string | `"0.0.0.0"` | Optional, empty by default to listen on both IPv4 and IPv6. Opens a unix socket when given a path instead of an address (e.g. '/run/zigbee2mqtt/zigbee2mqtt.sock') Don't set this if you use Docker or the Home Assistant add-on unless you're sure the chosen IP is available inside the container |
 | zigbee2mqtt.frontend.port | int | `8080` | Mandatory, default 8080 |
 | zigbee2mqtt.frontend.url | string | `nil` | Optional, url on which the frontend can be reached, currently only used for the Home Assistant device configuration page |

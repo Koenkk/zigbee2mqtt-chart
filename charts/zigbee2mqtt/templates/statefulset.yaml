@@ -82,11 +82,11 @@ spec:
         - name: yq
           ## hardcoding here the image. It will be either available in z2m or it will be added to config.
           ## not creating entries config yet so users don't couple with it, causing migration issues.
-          image: "mikefarah/yq:4.45.1"
+          image: "{{ .Values.secretesMigratorContainer.repository }}:{{ .Values.secretesMigratorContainer.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           command: [ "/bin/sh" ]
           workingDir: "/app/data"
-          {{- with .Values.statefulset.securityContext }}
+          {{- with .Values.secretesMigratorContainer.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
           {{- end }}
