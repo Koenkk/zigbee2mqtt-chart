@@ -12,6 +12,24 @@ image:
   pullPolicy: IfNotPresent
   # -- Container additional secrets to pull image
   imagePullSecrets: {}
+
+# -- details about the image
+secretesMigratorContainer:
+  # -- Image repository for the `zigbee2mqtt` container.
+  repository: "mikefarah/yq"
+  # -- Version for the `zigbee2mqtt` container.
+  tag: "4.45.1"
+  # -- Container pull policy
+  pullPolicy: IfNotPresent
+  # -- Container additional secrets to pull image
+  imagePullSecrets: { }
+  # -- Security context for the container that migrates the configuration
+  # -- yq runs by default with user 1000 which does not have
+  # -- permissions to create files since z2m runs with root (by default)
+  securityContext:
+    runAsUser: 0
+    privileged: true
+
 service:
   # -- annotations for the service created
   annotations: {}
@@ -20,6 +38,7 @@ service:
   # -- port in which the service will be listening
   port: 8080
 statefulset:
+
   storage:
     enabled: false
     size: 1Gi
@@ -154,6 +173,9 @@ zigbee2mqtt:
     # -- Disable automatic update checks
     disable_automatic_update_check: false
   frontend:
+    # -- If the front end should be enabled, true by default. Pod health checks are based on this, so disabling
+    # it will cause an error loop unless health checks are updated.
+    enabled: true
     # -- Mandatory, default 8080
     port: 8080
     # -- Optional, empty by default to listen on both IPv4 and IPv6. Opens a unix socket when given a path instead of an address (e.g. '/run/zigbee2mqtt/zigbee2mqtt.sock')
