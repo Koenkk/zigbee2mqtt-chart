@@ -11,6 +11,6 @@ keywords:
 home: https://github.com/Koenkk/zigbee2mqtt
 icon: https://www.zigbee2mqtt.io/logo.png
 sources:
-  - https://github.com/Koenkk/zigbee2mqtt
+  - https://github.com/Koenkk/zigbee2mqtt-chart
 maintainers:
   - name: Koen Kanters
