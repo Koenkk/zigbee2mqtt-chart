@@ -1,6 +1,6 @@
 # zigbee2mqtt
 
-![Version: 2.1.1](https://img.shields.io/badge/Version-2.1.1-informational?style=flat-square) ![AppVersion: 2.1.1](https://img.shields.io/badge/AppVersion-2.1.1-informational?style=flat-square)
+![Version: 2.1.2](https://img.shields.io/badge/Version-2.1.2-informational?style=flat-square) ![AppVersion: 2.1.2](https://img.shields.io/badge/AppVersion-2.1.2-informational?style=flat-square)
 
 Bridges events and allows you to control your Zigbee devices via MQTT
 
@@ -14,7 +14,7 @@ Bridges events and allows you to control your Zigbee devices via MQTT
 
 ## Source Code
 
-* <https://github.com/Koenkk/zigbee2mqtt>
+* <https://github.com/Koenkk/zigbee2mqtt-chart>
 
 ## Requirements
 
@@ -29,7 +29,7 @@ Kubernetes: `>=1.26.0-0`
 | image.imagePullSecrets | object | `{}` | Container additional secrets to pull image |
 | image.pullPolicy | string | `"IfNotPresent"` | Container pull policy |
 | image.repository | string | `"koenkk/zigbee2mqtt"` | Image repository for the `zigbee2mqtt` container. |
-| image.tag | string | `""` | Version for the `zigbee2mqtt` container. |
+| image.tag | string | `"2.1.1"` | Version for the `zigbee2mqtt` container. |
 | ingress | object | `{"annotations":{},"enabled":false,"hosts":[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"},{"path":"/api","pathType":"ImplementationSpecific"}]}],"ingressClassName":"contour","labels":{},"pathType":"Prefix","tls":[{"hosts":["yourdomain.com"],"secretName":"some-tls-secret"}]}` | Ingress configuration. Zigbee2mqtt does use webssockets, which is not part of the Ingress standart settings. most of the popular ingresses supports them through annotations. Please check https://www.zigbee2mqtt.io/guide/installation/08_kubernetes.html for examples. |
 | ingress.enabled | bool | `false` | When enabled a new Ingress will be created |
 | ingress.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"},{"path":"/api","pathType":"ImplementationSpecific"}]}]` | list of hosts that should be allowed for the zigbee2mqtt service |
