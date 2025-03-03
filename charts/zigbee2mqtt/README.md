@@ -84,7 +84,7 @@ Kubernetes: `>=1.26.0-0`
 | zigbee2mqtt.external_converters | list | `[]` |  |
 | zigbee2mqtt.frontend.auth_token | string | `nil` | Optional, enables authentication, disabled by default, cleartext (no hashing required) |
 | zigbee2mqtt.frontend.enabled | bool | `true` | If the front end should be enabled, true by default. Pod health checks are based on this, so disabling it will cause an error loop unless health checks are updated. |
-| zigbee2mqtt.frontend.host | string | `"0.0.0.0"` | Optional, empty by default to listen on both IPv4 and IPv6. Opens a unix socket when given a path instead of an address (e.g. '/run/zigbee2mqtt/zigbee2mqtt.sock') Don't set this if you use Docker or the Home Assistant add-on unless you're sure the chosen IP is available inside the container |
+| zigbee2mqtt.frontend.host | string | `""` | Optional, empty by default to listen on both IPv4 and IPv6. Opens a unix socket when given a path instead of an address (e.g. '/run/zigbee2mqtt/zigbee2mqtt.sock') Don't set this if you use Docker or the Home Assistant add-on unless you're sure the chosen IP is available inside the container |
 | zigbee2mqtt.frontend.port | int | `8080` | Mandatory, default 8080 |
 | zigbee2mqtt.frontend.url | string | `nil` | Optional, url on which the frontend can be reached, currently only used for the Home Assistant device configuration page |
 | zigbee2mqtt.homeassistant.discovery_topic | string | `"homeassistant"` |  |
