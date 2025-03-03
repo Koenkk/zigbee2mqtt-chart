@@ -28,7 +28,6 @@ secretesMigratorContainer:
   # -- permissions to create files since z2m runs with root (by default)
   securityContext:
     runAsUser: 0
-    privileged: true
 
 service:
   # -- annotations for the service created
