@@ -29,7 +29,7 @@ Kubernetes: `>=1.26.0-0`
 | image.imagePullSecrets | object | `{}` | Container additional secrets to pull image |
 | image.pullPolicy | string | `"IfNotPresent"` | Container pull policy |
 | image.repository | string | `"koenkk/zigbee2mqtt"` | Image repository for the `zigbee2mqtt` container. |
-| image.tag | string | `"2.1.1"` | Version for the `zigbee2mqtt` container. |
+| image.tag | string | `nil` | Version for the `zigbee2mqtt` container. If left as null it will use the chart appVersion |
 | ingress | object | `{"annotations":{},"enabled":false,"hosts":[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"},{"path":"/api","pathType":"ImplementationSpecific"}]}],"ingressClassName":"contour","labels":{},"pathType":"Prefix","tls":[{"hosts":["yourdomain.com"],"secretName":"some-tls-secret"}]}` | Ingress configuration. Zigbee2mqtt does use webssockets, which is not part of the Ingress standart settings. most of the popular ingresses supports them through annotations. Please check https://www.zigbee2mqtt.io/guide/installation/08_kubernetes.html for examples. |
 | ingress.enabled | bool | `false` | When enabled a new Ingress will be created |
 | ingress.hosts | list | `[{"host":"chart-example.local","paths":[{"path":"/","pathType":"ImplementationSpecific"},{"path":"/api","pathType":"ImplementationSpecific"}]}]` | list of hosts that should be allowed for the zigbee2mqtt service |
@@ -38,11 +38,11 @@ Kubernetes: `>=1.26.0-0`
 | ingress.pathType | string | `"Prefix"` | Ingress implementation specific (potentially) for most use cases Prefix should be ok |
 | ingress.tls | list | `[{"hosts":["yourdomain.com"],"secretName":"some-tls-secret"}]` | configuration for tls service (ig any) |
 | nameOverride | string | `nil` | override the release name |
-| secretesMigratorContainer | object | `{"imagePullSecrets":{},"pullPolicy":"IfNotPresent","repository":"mikefarah/yq","securityContext":{"privileged":true,"runAsUser":0},"tag":"4.45.1"}` | details about the image |
+| secretesMigratorContainer | object | `{"imagePullSecrets":{},"pullPolicy":"IfNotPresent","repository":"mikefarah/yq","securityContext":{"runAsUser":0},"tag":"4.45.1"}` | details about the image |
 | secretesMigratorContainer.imagePullSecrets | object | `{}` | Container additional secrets to pull image |
 | secretesMigratorContainer.pullPolicy | string | `"IfNotPresent"` | Container pull policy |
 | secretesMigratorContainer.repository | string | `"mikefarah/yq"` | Image repository for the `zigbee2mqtt` container. |
-| secretesMigratorContainer.securityContext | object | `{"privileged":true,"runAsUser":0}` | permissions to create files since z2m runs with root (by default) |
+| secretesMigratorContainer.securityContext | object | `{"runAsUser":0}` | permissions to create files since z2m runs with root (by default) |
 | secretesMigratorContainer.tag | string | `"4.45.1"` | Version for the `zigbee2mqtt` container. |
 | service.annotations | object | `{}` | annotations for the service created |
 | service.port | int | `8080` | port in which the service will be listening |
