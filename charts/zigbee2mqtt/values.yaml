@@ -6,7 +6,7 @@ customLabels: {}
 image:
   # -- Image repository for the `zigbee2mqtt` container.
   repository: koenkk/zigbee2mqtt
-  # -- Version for the `zigbee2mqtt` container.
+  # -- Version for the `zigbee2mqtt` container. If left as null it will use the chart appVersion
   tag: null
   # -- Container pull policy
   pullPolicy: IfNotPresent
@@ -22,7 +22,7 @@ secretesMigratorContainer:
   # -- Container pull policy
   pullPolicy: IfNotPresent
   # -- Container additional secrets to pull image
-  imagePullSecrets: { }
+  imagePullSecrets: {}
   # -- Security context for the container that migrates the configuration
   # -- yq runs by default with user 1000 which does not have
   # -- permissions to create files since z2m runs with root (by default)
@@ -37,7 +37,6 @@ service:
   # -- port in which the service will be listening
   port: 8080
 statefulset:
-
   storage:
     enabled: false
     size: 1Gi
@@ -99,8 +98,8 @@ statefulset:
 zigbee2mqtt:
   homeassistant:
     enabled: true
-    discovery_topic: 'homeassistant'
-    status_topic: 'hass/status'
+    discovery_topic: "homeassistant"
+    status_topic: "hass/status"
     legacy_entity_attributes: true
     legacy_triggers: false
   # -- Optional: allow new devices to join.
@@ -200,7 +199,7 @@ zigbee2mqtt:
     log_output:
       - console
     log_level: info
-    timestamp_format: 'YYYY-MM-DD HH:mm:ss'
+    timestamp_format: "YYYY-MM-DD HH:mm:ss"
     # -- Optional: state caching, MQTT message payload will contain all attributes, not only changed ones.
     # -- Has to be true when integrating via Home Assistant (default: true)
     cache_state: true
@@ -210,7 +209,7 @@ zigbee2mqtt:
     cache_state_send_on_startup: true
     # -- Optional: Add a last_seen attribute to MQTT messages, contains date/time of last Zigbee message
     # possible values are: disable (default), ISO_8601, ISO_8601_local, epoch (default: disable)
-    last_seen: 'disable'
+    last_seen: "disable"
     # -- Optional: Add an elapsed attribute to MQTT messages, contains milliseconds since the previous msg (default: false)
     elapsed: false
     # -- Optional: Enables report feature, this feature is DEPRECATED since reporting is now setup by default
