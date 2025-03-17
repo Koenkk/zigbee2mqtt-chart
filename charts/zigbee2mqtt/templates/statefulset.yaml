@@ -43,6 +43,10 @@ spec:
       containers:
         - name: zigbee2mqtt
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          {{- with .Values.statefulset.lifecycle }}
+          lifecycle:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           {{- with .Values.statefulset.securityContext }}
           securityContext:
             {{- toYaml . | nindent 12 }}
