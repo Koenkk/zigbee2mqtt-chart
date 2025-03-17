@@ -32,8 +32,6 @@ jobs:
       - name: Post Comment to PR
         if: ${{ failure() ||  success() }}
         uses: actions/github-script@v7
-        env:
-          PLAN: "Terraform Plan\n${{ env.plan }}\n${{ steps.plan.outputs.stderr }}"
         continue-on-error: true
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
