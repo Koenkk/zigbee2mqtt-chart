@@ -50,7 +50,7 @@ jobs:
             const output = `#### Helm Lint 🖌\`${{ steps.lint.outcome }}\`
             #### Helm Docs Updated 📚\`${{ steps.docs.outcome }}\`
 
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name  }}\`
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name  }}\`*`;
 
             // 3. If we have a comment, update it, otherwise create a new one
             if (botComment) {
