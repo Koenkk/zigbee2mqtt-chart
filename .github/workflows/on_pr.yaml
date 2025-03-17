@@ -24,6 +24,49 @@ jobs:
         working-directory: charts/zigbee2mqtt
 
       - name: Run helm-docs
+        id: docs
         uses: losisin/helm-docs-github-action@v1
         with:
           fail-on-diff: true
+
+      - name: Post Comment to PR
+        if: ${{ failure() ||  success() }}
+        uses: actions/github-script@v7
+        env:
+          PLAN: "Terraform Plan\n${{ env.plan }}\n${{ steps.plan.outputs.stderr }}"
+        continue-on-error: true
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // 1. Retrieve existing bot comments for the PR
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+            })
+            const botComment = comments.find(comment => {
+              return comment.user.type === 'Bot' && comment.body.includes('Helm Lint')
+            })
+
+            // 2. Prepare format of the comment
+            const output = `#### Helm Lint 🖌\`${{ steps.lint.outcome }}\`
+            #### Helm Docs Updated 📚\`${{ steps.docs.outcome }}\`
+
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name  }}\`
+
+            // 3. If we have a comment, update it, otherwise create a new one
+            if (botComment) {
+              github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: botComment.id,
+                body: output
+              })
+            } else {
+              github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: output
+              })
+            }
