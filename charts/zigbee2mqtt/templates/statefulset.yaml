@@ -53,6 +53,8 @@ spec:
           {{- end }}
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
+            - name: Z2M_ONBOARD_NO_SERVER
+              value: "1"
             - name: TZ
               value: {{ .Values.zigbee2mqtt.timezone }}
           ports:
