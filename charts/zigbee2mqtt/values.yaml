@@ -47,7 +47,7 @@ statefulset:
     ## https://kubernetes.io/docs/concepts/storage/persistent-volumes/#selector
     matchLabels: {}
     matchExpressions: {}
-    ## -- annotations to add to the persistent volume claim
+    # -- annotations to add to the persistent volume claim
     annotations: {}
   secrets:
     # -- the name for the kubernets secret to mount as secret.yaml. This can be referenced in the config
