@@ -70,6 +70,8 @@ statefulset:
   # -- Select specific kube node, this will allow enforcing zigbee2mqtt running
   # only on the node with the USB adapter connected
   nodeSelector: {}
+  # -- Node affinity for the pods
+  affinity: {}
   # -- Lifecycle configuration for the container
   lifecycle: {}
   # -- Configure Pods Security Context

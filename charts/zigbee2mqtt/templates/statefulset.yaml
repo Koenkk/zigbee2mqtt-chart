@@ -138,8 +138,10 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: data-volume
+    {{- if .Values.statefulset.storage.annotations }}
       annotations:
-        {{ toYaml .Values.statefulset.storage.annotations | indent 8 }}
+        {{- toYaml .Values.statefulset.storage.annotations | nindent 8 }}
+    {{- end }}
     spec:
       accessModes: [ "ReadWriteOnce" ]
       storageClassName: {{ .Values.statefulset.storage.storageClassName }}
