@@ -1,6 +1,6 @@
 # zigbee2mqtt
 
-![Version: 2.3.0](https://img.shields.io/badge/Version-2.3.0-informational?style=flat-square) ![AppVersion: 2.3.0](https://img.shields.io/badge/AppVersion-2.3.0-informational?style=flat-square)
+![Version: 2.3.1](https://img.shields.io/badge/Version-2.3.1-informational?style=flat-square) ![AppVersion: 2.3.0](https://img.shields.io/badge/AppVersion-2.3.0-informational?style=flat-square)
 
 Bridges events and allows you to control your Zigbee devices via MQTT
 
@@ -47,6 +47,7 @@ Kubernetes: `>=1.26.0-0`
 | service.annotations | object | `{}` | annotations for the service created |
 | service.port | int | `8080` | port in which the service will be listening |
 | service.type | string | `"LoadBalancer"` | type of Service to be created |
+| statefulset.affinity | object | `{}` | Node affinity for the pods |
 | statefulset.command | object | `{}` | Overrides the entrypoint of the container |
 | statefulset.dnsPolicy | string | `"ClusterFirst"` | pod dns policy |
 | statefulset.lifecycle | object | `{}` | Lifecycle configuration for the container |
