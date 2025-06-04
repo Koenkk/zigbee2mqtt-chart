@@ -47,6 +47,7 @@ Kubernetes: `>=1.26.0-0`
 | service.annotations | object | `{}` | annotations for the service created |
 | service.port | int | `8080` | port in which the service will be listening |
 | service.type | string | `"LoadBalancer"` | type of Service to be created |
+| statefulset.affinity | object | `{}` | Node affinity for the pods |
 | statefulset.command | object | `{}` | Overrides the entrypoint of the container |
 | statefulset.dnsPolicy | string | `"ClusterFirst"` | pod dns policy |
 | statefulset.lifecycle | object | `{}` | Lifecycle configuration for the container |
@@ -56,6 +57,7 @@ Kubernetes: `>=1.26.0-0`
 | statefulset.resources | object | `{"limits":{"cpu":"200m","memory":"600Mi"},"requests":{"cpu":"200m","memory":"600Mi"}}` | CPU/Memory configuration for the pods |
 | statefulset.secrets.name | string | `""` | the name for the kubernets secret to mount as secret.yaml. This can be referenced in the config by using advanced configurations https://www.zigbee2mqtt.io/guide/configuration/frontend.html#advanced-configuration |
 | statefulset.securityContext | object | `{"capabilities":{"add":["SYS_ADMIN"]},"privileged":true}` | Configure Container Security Context |
+| statefulset.storage.annotations | object | `{}` | annotations to add to the persistent volume claim |
 | statefulset.storage.enabled | bool | `false` |  |
 | statefulset.storage.existingVolume | string | `""` |  |
 | statefulset.storage.matchExpressions | object | `{}` |  |
