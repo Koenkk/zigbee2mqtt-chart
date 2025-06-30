@@ -25,6 +25,7 @@ Kubernetes: `>=1.26.0-0`
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | customLabels | object | `{}` |  |
+| extraResources | list | `[]` | Extra Resources. Define some extra resources to be created, such as ExternalResource or Secrets, etc. |
 | fullnameOverride | string | `nil` | override the name of the objects generated |
 | image.imagePullSecrets | object | `{}` | Container additional secrets to pull image |
 | image.pullPolicy | string | `"IfNotPresent"` | Container pull policy |
