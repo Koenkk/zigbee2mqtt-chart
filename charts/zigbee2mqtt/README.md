@@ -24,6 +24,7 @@ Kubernetes: `>=1.26.0-0`
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
+| configmap.annotations | object | `{}` | annotations for the configmap created |
 | customLabels | object | `{}` |  |
 | extraResources | list | `[]` | Extra Resources. Define some extra resources to be created, such as ExternalResource or Secrets, etc. |
 | fullnameOverride | string | `nil` | override the name of the objects generated |
@@ -49,11 +50,13 @@ Kubernetes: `>=1.26.0-0`
 | service.port | int | `8080` | port in which the service will be listening |
 | service.type | string | `"LoadBalancer"` | type of Service to be created |
 | statefulset.affinity | object | `{}` | Node affinity for the pods |
+| statefulset.annotations | object | `{}` | annotations for the statefulset created |
 | statefulset.command | object | `{}` | Overrides the entrypoint of the container |
 | statefulset.dnsPolicy | string | `"ClusterFirst"` | pod dns policy |
 | statefulset.lifecycle | object | `{}` | Lifecycle configuration for the container |
 | statefulset.livenessProbe | object | `{"failureThreshold":5,"httpGet":{"path":"/","port":"web"},"initialDelaySeconds":60,"periodSeconds":30,"timeoutSeconds":10}` | Configures Container liveness probe |
 | statefulset.nodeSelector | object | `{}` | Select specific kube node, this will allow enforcing zigbee2mqtt running only on the node with the USB adapter connected |
+| statefulset.podAnnotations | object | `{}` | annotations for the pod template |
 | statefulset.podSecurityContext | object | `{"seccompProfile":{"type":"RuntimeDefault"}}` | Configure Pods Security Context |
 | statefulset.resources | object | `{"limits":{"cpu":"200m","memory":"600Mi"},"requests":{"cpu":"200m","memory":"600Mi"}}` | CPU/Memory configuration for the pods |
 | statefulset.secrets.name | string | `""` | the name for the kubernets secret to mount as secret.yaml. This can be referenced in the config by using advanced configurations https://www.zigbee2mqtt.io/guide/configuration/frontend.html#advanced-configuration |

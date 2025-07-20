@@ -5,7 +5,7 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "zigbee2mqtt.labels" . | nindent 4 }}
-  {{- with .Values.service.annotations }}
+  {{- with .Values.configmap.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
