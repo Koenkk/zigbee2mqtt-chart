@@ -36,7 +36,15 @@ service:
   type: LoadBalancer
   # -- port in which the service will be listening
   port: 8080
+
+configmap:
+  # -- annotations for the configmap created
+  annotations: {}
 statefulset:
+  # -- annotations for the statefulset created
+  annotations: {}
+  # -- annotations for the pod template
+  podAnnotations: {}
   storage:
     enabled: false
     size: 1Gi
