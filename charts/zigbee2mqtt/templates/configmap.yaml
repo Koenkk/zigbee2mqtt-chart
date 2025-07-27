@@ -28,7 +28,7 @@ data:
     ota:
       {{- .Values.zigbee2mqtt.ota | toYaml | nindent 6}}
     permit_join: {{ .Values.zigbee2mqtt.permit_join }}
-    blocklist: {{ .Values.zigbee2mqtt.blocklist }}
+    blocklist: {{ toJson .Values.zigbee2mqtt.blocklist }}
     {{- if .Values.zigbee2mqtt.availability }}
     availability:
       {{- .Values.zigbee2mqtt.availability | toYaml | nindent 6}}
