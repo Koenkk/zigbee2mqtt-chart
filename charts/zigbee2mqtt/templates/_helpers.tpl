@@ -32,6 +32,6 @@ app.kubernetes.io/name: "{{ template "zigbee2mqtt.name" . }}"
 app.kubernetes.io/version: "{{ .Chart.AppVersion }}"
 helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}"
 {{- if .Values.customLabels }}
-{{ toYaml .Values.customLabels | indent 2 -}}
+{{ toYaml .Values.customLabels -}}
 {{- end }}
 {{- end }}
