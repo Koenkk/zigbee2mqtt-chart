@@ -30,6 +30,9 @@ spec:
       imagePullSecrets:
 {{ toYaml .Values.image.imagePullSecrets | indent 8 }}
       {{- end }}
+      {{- if .Values.statefulset.priorityClassName }}
+      priorityClassName: {{ .Values.statefulset.priorityClassName }}
+      {{- end }}
       dnsPolicy: {{ .Values.statefulset.dnsPolicy }}
 {{- with .Values.statefulset.affinity }}
       affinity:
