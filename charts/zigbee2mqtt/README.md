@@ -105,6 +105,7 @@ Kubernetes: `>=1.26.0-0`
 | zigbee2mqtt.ota.disable_automatic_update_check | bool | `false` | Disable automatic update checks |
 | zigbee2mqtt.ota.ikea_ota_use_test_url | bool | `false` | Optional: use IKEA TRADFRI OTA test server, see OTA updates documentation (default: false) |
 | zigbee2mqtt.ota.update_check_interval | int | `1440` | Minimum time between OTA update checks |
+| zigbee2mqtt.passlist | list | `[]` | Optional: Only allow certain devices to join the network ( ieeeAddr ) See https://www.zigbee2mqtt.io/guide/configuration/block-pass-list.html for more info |
 | zigbee2mqtt.permit_join | bool | `false` | Optional: allow new devices to join. |
 | zigbee2mqtt.serial.baudrate | int | `115200` | Optional: Baud rate speed for serial port, this can be anything firmware support but default is 115200 for Z-Stack and EZSP, 38400 for Deconz, however note that some EZSP firmware need 57600. |
 | zigbee2mqtt.serial.disable_led | bool | `false` | Optional: disable LED of the adapter if supported (default: false) |
