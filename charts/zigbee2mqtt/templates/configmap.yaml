@@ -47,4 +47,8 @@ data:
       {{- .Values.zigbee2mqtt.advanced | toYaml | nindent 6}}
     device_options:
       {{- .Values.zigbee2mqtt.device_options | toYaml | nindent 6}}
+    {{- if .Values.zigbee2mqtt.passlist }}
+    passlist:
+      {{- .Values.zigbee2mqtt.passlist | toYaml | nindent 6}}
+    {{- end }}
 {{- end }}

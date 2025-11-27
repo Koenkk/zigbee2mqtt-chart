@@ -252,6 +252,9 @@ zigbee2mqtt:
     # In case you are having issues try `200`.
     # For more information see https://github.com/Koenkk/zigbee2mqtt/issues/4884
     adapter_delay: 0
+  # -- Optional: Only allow certain devices to join the network ( ieeeAddr )
+  # See https://www.zigbee2mqtt.io/guide/configuration/block-pass-list.html for more info
+  passlist: []
 # -- Ingress configuration. Zigbee2mqtt does use webssockets, which is not part of the Ingress standart settings.
 # most of the popular ingresses supports them through annotations. Please check https://www.zigbee2mqtt.io/guide/installation/08_kubernetes.html
 # for examples.
