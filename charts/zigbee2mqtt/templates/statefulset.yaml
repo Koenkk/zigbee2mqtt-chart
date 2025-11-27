@@ -83,9 +83,11 @@ spec:
           {{- with .Values.statefulset.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
+            {{- if .Values.configmap.enabled }}
             - mountPath: /app/data/configmap-configuration.yaml
               name: config-volume
               subPath: configuration.yaml
+            {{- end }}
             {{- if .Values.statefulset.secrets.name }}
             - mountPath: /app/data/secret.yaml
               name: secrets-volume
@@ -94,6 +96,7 @@ spec:
             - mountPath: /app/data/
               name: data-volume
           resources: {{- toYaml .Values.statefulset.resources | nindent 12 }}
+      {{- if .Values.configmap.enabled }}
       initContainers:
         - name: yq
           ## hardcoding here the image. It will be either available in z2m or it will be added to config.
@@ -128,13 +131,16 @@ spec:
             - mountPath: /app/data/configmap-configuration.yaml
               name: config-volume
               subPath: configuration.yaml
+      {{- end }}
       volumes:
       {{- with .Values.statefulset.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
+        {{- if .Values.configmap.enabled }}
         - name: config-volume
           configMap:
             name: {{ include "zigbee2mqtt.fullname" . }}
+        {{- end }}
         {{- if .Values.statefulset.secrets.name }}
         - name: secrets-volume
           secret:
