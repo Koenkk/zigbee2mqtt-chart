@@ -38,6 +38,8 @@ service:
   port: 8080
 
 configmap:
+  # -- Enable or disable the ConfigMap creation
+  enabled: true
   # -- annotations for the configmap created
   annotations: {}
 statefulset:
