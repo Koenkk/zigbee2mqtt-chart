@@ -1,6 +1,6 @@
 # zigbee2mqtt
 
-![Version: 2.7.1](https://img.shields.io/badge/Version-2.7.1-informational?style=flat-square) ![AppVersion: 2.7.1](https://img.shields.io/badge/AppVersion-2.7.1-informational?style=flat-square)
+![Version: 2.7.2](https://img.shields.io/badge/Version-2.7.2-informational?style=flat-square) ![AppVersion: 2.7.2](https://img.shields.io/badge/AppVersion-2.7.2-informational?style=flat-square)
 
 Bridges events and allows you to control your Zigbee devices via MQTT
 
@@ -25,6 +25,7 @@ Kubernetes: `>=1.26.0-0`
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | configmap.annotations | object | `{}` | annotations for the configmap created |
+| configmap.enabled | bool | `true` | Enable or disable the ConfigMap creation |
 | customLabels | object | `{}` |  |
 | extraResources | list | `[]` | Extra Resources. Define some extra resources to be created, such as ExternalResource or Secrets, etc. |
 | fullnameOverride | string | `nil` | override the name of the objects generated |
