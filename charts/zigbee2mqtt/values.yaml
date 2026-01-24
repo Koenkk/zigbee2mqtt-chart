@@ -283,6 +283,31 @@ ingress:
       hosts:
         - yourdomain.com
 
+httproute:
+  # -- Setting that allows Zigbee2mqtt to generate HTTPRoute records for the Zigbee2mqtt UI service using Gateway API.
+  enabled: false
+  # -- Gateway references for HTTPRoute. Specify which Gateway(s) should handle this route.
+  parentRefs: []
+  ## Example:
+  # - name: gateway-name
+  #   namespace: gateway-namespace
+  #   # Optional fields with defaults:
+  #   # group: gateway.networking.k8s.io   # default
+  #   # kind: Gateway                      # default
+  #   # sectionName: https                 # optional, targets a specific listener
+  # -- List of hostnames for the HTTPRoute. Multiple hostnames are supported.
+  hostnames: []
+  ## Example:
+  # - zigbee2mqtt.example.com
+  # - zigbee2mqtt.example.org
+  # -- Default path for HTTPRoute. You can access the Zigbee2mqtt UI by following the full path.
+  path: /
+  # -- Path match type for HTTPRoute. (Options: "Exact", "PathPrefix")
+  pathType: PathPrefix
+  # -- Annotations for the HTTPRoute resource in the form of key-value pairs.
+  annotations: {}
+  ## Example:
+
 # -- Extra Resources. Define some extra resources to be created, such as ExternalResource or Secrets, etc.
 extraResources: []
   # - apiVersion: v1
