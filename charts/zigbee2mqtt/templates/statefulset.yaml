@@ -152,7 +152,9 @@ spec:
         {{- end }}
   {{- if .Values.statefulset.storage.enabled }}
   volumeClaimTemplates:
-  - metadata:
+  - apiVersion: v1
+    kind: PersistentVolumeClaim
+    metadata:
       name: data-volume
     {{- if .Values.statefulset.storage.annotations }}
       annotations:
