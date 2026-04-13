@@ -29,6 +29,12 @@ Kubernetes: `>=1.26.0-0`
 | customLabels | object | `{}` |  |
 | extraResources | list | `[]` | Extra Resources. Define some extra resources to be created, such as ExternalResource or Secrets, etc. |
 | fullnameOverride | string | `nil` | override the name of the objects generated |
+| httproute.annotations | object | `{}` | Annotations for the HTTPRoute resource in the form of key-value pairs. |
+| httproute.enabled | bool | `false` | Setting that allows Zigbee2mqtt to generate HTTPRoute records for the Zigbee2mqtt UI service using Gateway API. |
+| httproute.hostnames | list | `[]` | List of hostnames for the HTTPRoute. Multiple hostnames are supported. |
+| httproute.parentRefs | list | `[]` | Gateway references for HTTPRoute. Specify which Gateway(s) should handle this route. |
+| httproute.path | string | `"/"` | Default path for HTTPRoute. You can access the Zigbee2mqtt UI by following the full path. |
+| httproute.pathType | string | `"PathPrefix"` | Path match type for HTTPRoute. (Options: "Exact", "PathPrefix") |
 | image.imagePullSecrets | object | `{}` | Container additional secrets to pull image |
 | image.pullPolicy | string | `"IfNotPresent"` | Container pull policy |
 | image.repository | string | `"koenkk/zigbee2mqtt"` | Image repository for the `zigbee2mqtt` container. |
