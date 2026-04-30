@@ -48,6 +48,12 @@ Kubernetes: `>=1.26.0-0`
 | ingress.pathType | string | `"Prefix"` | Ingress implementation specific (potentially) for most use cases Prefix should be ok |
 | ingress.tls | list | `[{"hosts":["yourdomain.com"],"secretName":"some-tls-secret"}]` | configuration for tls service (ig any) |
 | nameOverride | string | `nil` | override the release name |
+| networkPolicy.cilium.egress | list | `[]` | Cilium network policy egress https://docs.cilium.io/en/stable/security/policy/ |
+| networkPolicy.cilium.ingress | list | `[]` | Cilium network policy ingress https://docs.cilium.io/en/stable/security/policy/ |
+| networkPolicy.egress  | list | `[]` | Kubernetes egress spec https://kubernetes.io/docs/concepts/services-networking/network-policies/ |
+| networkPolicy.enabled | bool | `false` | Enable network policy management |
+| networkPolicy.flavor | string | `kubernetes` | Network policy mode in kubernetes, cilium |
+| networkPolicy.ingress  | list | `[]` |  | Kubernetes ingress spec https://kubernetes.io/docs/concepts/services-networking/network-policies/ |
 | secretesMigratorContainer | object | `{"imagePullSecrets":{},"pullPolicy":"IfNotPresent","repository":"mikefarah/yq","securityContext":{"runAsUser":0},"tag":"4.45.1"}` | details about the image |
 | secretesMigratorContainer.imagePullSecrets | object | `{}` | Container additional secrets to pull image |
 | secretesMigratorContainer.pullPolicy | string | `"IfNotPresent"` | Container pull policy |
