@@ -25,6 +25,7 @@ Kubernetes: `>=1.26.0-0`
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | configmap.annotations | object | `{}` | annotations for the configmap created |
+| configmap.devices | string | `nil` | Optional: devices.yaml content (managed in Git, copied to PVC on first start only) |
 | configmap.enabled | bool | `true` | Enable or disable the ConfigMap creation |
 | customLabels | object | `{}` |  |
 | extraResources | list | `[]` | Extra Resources. Define some extra resources to be created, such as ExternalResource or Secrets, etc. |

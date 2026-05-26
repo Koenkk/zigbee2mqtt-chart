@@ -42,6 +42,8 @@ configmap:
   enabled: true
   # -- annotations for the configmap created
   annotations: {}
+  # -- Optional: devices.yaml content (managed in Git, copied to PVC on first start only)
+  devices: null
 statefulset:
   # -- annotations for the statefulset created
   annotations: {}

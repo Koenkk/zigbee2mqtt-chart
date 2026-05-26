@@ -125,12 +125,22 @@ spec:
 
               yq --inplace '. *= load("configmap-configuration.yaml") | del(.version) ' configuration.yaml
               yq eval-all  '. as $item ireduce ({}; . * $item )' configmap-configuration.yaml configuration.yaml > configuration.yaml
+
+              if [ -f configmap-devices.yaml ] && [ ! -f devices.yaml ]; then
+                echo "devices.yaml does not exist, copying from config map"
+                cp configmap-devices.yaml devices.yaml
+              fi
           volumeMounts:
             - mountPath: /app/data/
               name: data-volume
             - mountPath: /app/data/configmap-configuration.yaml
               name: config-volume
               subPath: configuration.yaml
+            {{- if .Values.configmap.devices }}
+            - mountPath: /app/data/configmap-devices.yaml
+              name: config-volume
+              subPath: devices.yaml
+            {{- end }}
       {{- end }}
       volumes:
       {{- with .Values.statefulset.volumes }}

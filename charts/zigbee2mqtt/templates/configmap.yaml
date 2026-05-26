@@ -51,4 +51,8 @@ data:
     passlist:
       {{- .Values.zigbee2mqtt.passlist | toYaml | nindent 6}}
     {{- end }}
+  {{- if .Values.configmap.devices }}
+  devices.yaml: |
+    {{- .Values.configmap.devices | toYaml | nindent 4 }}
+  {{- end }}
 {{- end }}
