@@ -310,6 +310,45 @@ httproute:
   annotations: {}
   ## Example:
 
+networkPolicy:
+  # -- Setting network policies using differents flavors
+  enabled: false
+  # -- In cilium flavor mode, use the cilium network policy
+  cilium:
+    egress:
+    # Allow OTA updates
+    - toFQDNs:
+      - matchName: raw.githubusercontent.com
+      toPorts:
+      - ports:
+        - port: "443"
+          protocol: TCP
+    - toEndpoints:
+      - matchLabels:
+          k8s:io.kubernetes.pod.namespace: kube-system
+          k8s:k8s-app: kube-dns
+      toPorts:
+      - ports:
+        - port: "53"
+          protocol: UDP
+        - port: "53"
+          protocol: TCP
+        rules:
+          dns:
+          - matchName: raw.githubusercontent.com
+    # cluster ingress
+    ingress:
+    - toPorts:
+      - ports:
+        - port: web
+  # -- choose flavor in 'kubernetes', 'cilium'
+  flavor: kubernetes
+  ingress:
+  - ports:
+    - protocol: TCP
+      port: web
+  egress: {}
+
 # -- Extra Resources. Define some extra resources to be created, such as ExternalResource or Secrets, etc.
 extraResources: []
   # - apiVersion: v1

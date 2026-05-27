@@ -1,0 +1,20 @@
+{{- if and .Values.networkPolicy.enabled (eq .Values.networkPolicy.flavor "cilium") }}
+apiVersion: cilium.io/v2
+kind: CiliumNetworkPolicy
+metadata:
+  name: {{ include "zigbee2mqtt.fullname" . }}
+  labels:
+    {{- include "zigbee2mqtt.labels" . | nindent 4 }}
+spec:
+  endpointSelector:
+    matchLabels:
+      k8s:app: '{{ include "zigbee2mqtt.fullname" . }}'
+  {{- if and .Values.networkPolicy.cilium .Values.networkPolicy.cilium.egress }}
+  egress:
+    {{ toYaml .Values.networkPolicy.cilium.egress | nindent 4 }}
+  {{- end }}
+  {{- if and .Values.networkPolicy.cilium .Values.networkPolicy.cilium.ingress }}
+  ingress:
+    {{ toYaml .Values.networkPolicy.cilium.ingress | nindent 4 }}
+  {{- end }}
+{{- end }}
