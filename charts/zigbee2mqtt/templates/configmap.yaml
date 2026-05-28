@@ -14,7 +14,7 @@ data:
   configuration.yaml: |
     # We keep version 3, even if the current version is 4. The reason is that previous installations
     # will not have any version set in the config map. If we would set 4, it would skip the migration and z2m would
-    # have issues. Since we are moving to writable volumes, the init script will make version "soruce of truth" of existing
+    # have issues. Since we are moving to writable volumes, the init script will make version "source of truth" of existing
     # persisted config if any.
     # We will update this to 4 in future releases when we can assume users have upgraded.
     version: 3
