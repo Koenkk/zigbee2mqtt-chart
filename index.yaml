@@ -2,6 +2,27 @@ apiVersion: v1
 entries:
   zigbee2mqtt:
   - apiVersion: v2
+    appVersion: 2.11.0
+    created: "2026-06-01T18:53:29.198623669Z"
+    description: Bridges events and allows you to control your Zigbee devices via
+      MQTT
+    digest: de0b28e159f5ce8542a79d30857e0f9ffb0e935f3323d5d8320692cbbc59ff64
+    home: https://github.com/Koenkk/zigbee2mqtt
+    icon: https://www.zigbee2mqtt.io/logo.png
+    keywords:
+    - zigbee
+    - mqtt
+    - home-assistant
+    kubeVersion: '>=1.26.0-0'
+    maintainers:
+    - name: Koen Kanters
+    name: zigbee2mqtt
+    sources:
+    - https://github.com/Koenkk/zigbee2mqtt-chart
+    urls:
+    - https://github.com/Koenkk/zigbee2mqtt-chart/releases/download/2.11.0/zigbee2mqtt-2.11.0.tgz
+    version: 2.11.0
+  - apiVersion: v2
     appVersion: 2.10.1
     created: "2026-05-07T17:59:02.345646723Z"
     description: Bridges events and allows you to control your Zigbee devices via
@@ -631,4 +652,4 @@ entries:
     urls:
     - https://github.com/Koenkk/zigbee2mqtt-chart/releases/download/1.37.1/zigbee2mqtt-1.37.1.tgz
     version: 1.37.1
-generated: "2026-05-07T17:59:02.345849028Z"
+generated: "2026-06-01T18:53:29.198970837Z"
