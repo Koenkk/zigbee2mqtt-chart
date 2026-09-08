@@ -74,9 +74,6 @@ statefulset:
     requests:
       memory: 600Mi
       cpu: 200m
-    limits:
-      memory: 600Mi
-      cpu: 200m
   # -- Overrides the entrypoint of the container
   command: {}
   # -- Node taint tolerations for the pods
