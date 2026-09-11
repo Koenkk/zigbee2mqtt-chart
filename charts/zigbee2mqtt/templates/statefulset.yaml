@@ -71,6 +71,13 @@ spec:
               value: "1"
             - name: TZ
               value: {{ .Values.zigbee2mqtt.timezone }}
+          {{- with .Values.statefulset.env }}
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.statefulset.envFrom }}
+          envFrom:
+            {{- toYaml . | nindent 12 }}
+          {{- end }}
           ports:
             - containerPort: {{ .Values.zigbee2mqtt.frontend.port }}
               name: web

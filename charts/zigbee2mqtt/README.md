@@ -61,6 +61,8 @@ Kubernetes: `>=1.26.0-0`
 | statefulset.annotations | object | `{}` | annotations for the statefulset created |
 | statefulset.command | object | `{}` | Overrides the entrypoint of the container |
 | statefulset.dnsPolicy | string | `"ClusterFirst"` | pod dns policy |
+| statefulset.env | list | `[]` | Additional environment variables to be passed to the container |
+| statefulset.envFrom | list | `[]` | Additional envFrom sources to the container |
 | statefulset.lifecycle | object | `{}` | Lifecycle configuration for the container |
 | statefulset.livenessProbe | object | `{"failureThreshold":5,"httpGet":{"path":"/","port":"web"},"initialDelaySeconds":60,"periodSeconds":30,"timeoutSeconds":10}` | Configures Container liveness probe |
 | statefulset.nodeSelector | object | `{}` | Select specific kube node, this will allow enforcing zigbee2mqtt running only on the node with the USB adapter connected |
