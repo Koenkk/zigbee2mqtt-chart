@@ -103,6 +103,14 @@ statefulset:
     initialDelaySeconds: 60
     timeoutSeconds: 10
     periodSeconds: 30
+  # -- Additional environment variables to be passed to the container
+  env: []
+  #  - name: Z2M_WATCHDOG
+  #    value: "default"
+  # -- Additional envFrom sources to the container
+  envFrom: []
+  #  - configMapRef:
+  #      name: my-config-map
   # -- Additional volumeMounts to the server main container
   volumeMounts: []
   #  - mountPath: /usr/local/bin/my-binary
