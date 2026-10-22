@@ -69,6 +69,7 @@ Kubernetes: `>=1.26.0-0`
 | statefulset.podAnnotations | object | `{}` | annotations for the pod template |
 | statefulset.podSecurityContext | object | `{"seccompProfile":{"type":"RuntimeDefault"}}` | Configure Pods Security Context |
 | statefulset.priorityClassName | string | `""` | name of pod priority class |
+| statefulset.replicas | int | `1` | number of replicas; only 0 or 1 allowed (0 to stop zigbee2mqtt, e.g. for migrations) |
 | statefulset.resources | object | `{"requests":{"cpu":"200m","memory":"600Mi"}}` | CPU/Memory configuration for the pods |
 | statefulset.secrets.name | string | `""` | the name for the kubernets secret to mount as secret.yaml. This can be referenced in the config by using advanced configurations https://www.zigbee2mqtt.io/guide/configuration/frontend.html#advanced-configuration |
 | statefulset.securityContext | object | `{"capabilities":{"add":["SYS_ADMIN"]},"privileged":true}` | Configure Container Security Context |
