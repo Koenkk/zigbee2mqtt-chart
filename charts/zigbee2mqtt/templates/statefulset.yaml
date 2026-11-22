@@ -106,6 +106,9 @@ spec:
             - mountPath: /app/data/
               name: data-volume
           resources: {{- toYaml .Values.statefulset.resources | nindent 12 }}
+      {{- with $containers := .Values.statefulset.extraContainers }}
+        {{- toYaml $containers | nindent 8 }}
+      {{- end }}
       {{- if .Values.configmap.enabled }}
       initContainers:
         - name: yq
