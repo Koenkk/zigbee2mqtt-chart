@@ -122,6 +122,8 @@ statefulset:
   volumes: []
   #  - name: custom-tools
   #    emptyDir: {}
+  # -- Extra containers to add to the Pod spec.
+  extraContainers: []
 zigbee2mqtt:
   homeassistant:
     enabled: true
